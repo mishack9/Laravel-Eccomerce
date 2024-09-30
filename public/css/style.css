@@ -954,4 +954,11 @@ input.mail_bt::placeholder {
 }
 
 
+.pagination {
+    display: flex;
+   align-items: center;
+   justify-content: center;
+   
+}
+
 /* copyright section end */

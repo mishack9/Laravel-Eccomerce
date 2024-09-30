@@ -24,12 +24,12 @@
       <!-- fashion section end -->
       <!-- electronic section start -->
       
-        @include('home.includes.fashion2')
+        @include('home.includes.electronics')
 
       <!-- electronic section end -->
       <!-- jewellery  section start -->
      
-       @include('home.includes.fashion3')
+       @include('home.includes.jewelry')
 
       <!-- jewellery  section end -->
 

@@ -31,6 +31,8 @@ td{
   padding: 10px;
   border: 1px solid skyblue;
 }
+
+
 </style>
    @include('Admin.includes.css')
 
@@ -84,15 +86,7 @@ td{
         </div>   
         
      
-       <div class="table-responsive ">
-        <div class="card ml-3 mr-3">
-          <div class="card-header">
-            <a href="" class = "btn btn-primary">Back</a>
-            <div class="card-tools mt-3">
-              <h4><em>Catergory List:</em></h4>
-            </div>
-          </div>
-        </div>
+       <div class=" container table-responsive mb-5">
         <table class="table table-sm px-2 py-2">
           <thead>
             <tr>

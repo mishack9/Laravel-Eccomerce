@@ -55,8 +55,8 @@ input[type="file"]
         <div class="container">
           <div class="card ">
             <div class="ml-3 mr-3 mx-3 my-3 card-header">
-                <div class="card-tools">
-                  <a href="{{url('admin/dashboard')}}" class = "btn btn-secondary ml-5 mr-5">Back</a>
+                <div class="card-header">
+                  <a href="{{url('admin/dashboard')}}" class = "btn btn-secondary">Back</a>
                 </div>
                 <h3><em>Add Product :</em></h3>
             </div>
@@ -93,7 +93,7 @@ input[type="file"]
 
                 <div class="col-12 mt-3">
                   <label for="inputArea" class="form-label">Description</label>
-                  <textarea class="form-control" rows="8" name = "description" placeholder="Leave a Description here" id="inputArea"></textarea>
+                  <textarea class="form-control" id="summernote" rows="8" name = "description" placeholder="Leave a Description here" id="inputArea"></textarea>
                 </div>
 
                 <div class="col-6 mt-3">

@@ -24,7 +24,7 @@
             <div class="container">
                <div class="row">
                   <div class="col-sm-12">
-                     <div class="logo"><a href="index.html"><img src="{{ asset('images/logo.png') }}"></a></div>
+                     <div class="logo"><a href="index.html">{{-- <img src="{{ asset('images/logo.png') }}"> --}}</a></div>
                   </div>
                </div>
             </div>
@@ -38,36 +38,40 @@
        <div class="containt_main">
           <div id="mySidenav" class="sidenav">
              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-             <a href="index.html">Home</a>
-             <a href="fashion.html">Fashion</a>
-             <a href="electronic.html">Electronic</a>
-             <a href="jewellery.html">Jewellery</a>
+             <a href="{{url('/')}}">Home</a>
+             <a href="{{ route('AllProduct') }}">Products</a>
+             <a href="">Feature</a>
+             <a href="{{ route('contactus') }}">Contact</a>
+             <a href="">About Us</a>
           </div>
-          <span class="toggle_icon" onclick="openNav()"><img src="images/toggle-icon.png"></span>
+          <span class="toggle_icon" onclick="openNav()"><img src="{{asset('images/toggle-icon.png')}}"></span>
           <div class="dropdown">
              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Category 
              </button>
              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+               @foreach ($catergory as $data)
+                  <a class="dropdown-item" href="#">{{$data->catergory_title}}</a>
+               @endforeach
              </div>
           </div>
           <div class="main">
              <!-- Another variation with a button -->
+                 <form action="{{route('searchProduct')}}" method="get">
+                  @csrf
              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search this blog">
+                <input type="text" name = "search" class="form-control" placeholder="Search this blog">
                 <div class="input-group-append">
                    <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
                    <i class="fa fa-search"></i>
                    </button>
                 </div>
              </div>
+            </form>
           </div>
           <div class="header_box">
              <div class="lang_box ">
                 <a href="#" title="Language" class="nav-link" data-toggle="dropdown" aria-expanded="true">
-                <img src="images/flag-uk.png" alt="flag" class="mr-2 " title="United Kingdom"> English <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
+                <img src="{{ asset('images/flag-uk.png') }}" alt="flag" class="mr-2 " title="United Kingdom"> English <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
                 </a>
                 <div class="dropdown-menu ">
                    <a href="#" class="dropdown-item">
@@ -78,18 +82,41 @@
              </div>
              <div class="login_menu">
                 <ul>
-                   <li><a href="#">
-                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+
+                  @if (Route::has('login'))
+                     @auth
+                   
+                   <li class="mx-4 ml-4"><a href="{{route('myCart')}}">
+                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>{{$cart_count}}
                       <span class="padding_10">Cart</span></a>
                    </li>
-                   <li><a href="{{ route('register') }}">
+
+                   <li class="mx-4 ml-4"><a href="{{route('myOrder')}}">
+                     <i class="fa fa-mark" aria-hidden="true"></i>
+                     <span class="padding_10">Orders</span></a>
+                  </li>
+
+                   <li class="mx-4 ml-4">
+                     <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <input type="submit" value="Logout" name="" id="">
+                     </form>
+                   </li>
+
+                   @else
+
+                   <li class="mx-4 ml-4"><a href="{{ route('register') }}">
                      <i class="fa fa-users" aria-hidden="true"></i>
                      <span class="padding_10">Register</span></a>
                   </li>
-                   <li><a href="{{ route('login') }}">
+                   <li class="mx-4 ml-4"><a href="{{ route('login') }}">
                       <i class="fa fa-user" aria-hidden="true"></i>
                       <span class="padding_10">Login</span></a>
                    </li>
+     
+                   @endauth
+                   @endif
+
                 </ul>
              </div>
           </div>

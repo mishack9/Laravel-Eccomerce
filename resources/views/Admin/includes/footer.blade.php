@@ -19,3 +19,6 @@
 <script src="{{ asset('/admincss/vendor/jquery-validation/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('/admincss/js/charts-home.js') }}"></script>
 <script src="{{ asset('/admincss/js/front.js') }}"></script>
+
+
+ 
