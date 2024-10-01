@@ -9,5 +9,17 @@ class paypal_payment extends Model
 {
     use HasFactory;
 
-    protected $fillable = "paypal_payments";
+       protected $fillable = [
+
+        'payment_id',
+        'product_name',
+        'quantity',	
+        'amount',	
+        'currency',	
+        'payer_name',	
+        'payer_email',	
+        'payer_status',	
+        'payer_method'
+
+       ];
 }

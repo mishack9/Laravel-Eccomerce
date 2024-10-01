@@ -114,11 +114,11 @@
                                              <form action="{{route('paypal')}}" method = "post" >
                                              @csrf
 
-                                             <input type="text" value="{{$data->product->product_title}}" name="product_name" id="">
+                                             <input type="hidden" value="{{$data->product->product_title}}" name="product_name" id="">
 
-                                             <input type="text" value="{{$data->quantity}}" name="quantity" id="">
+                                             <input type="hidden" value="{{$data->quantity}}" name="quantity" id="">
 
-                                             <input type="text"  name="price" id="" value="<?php  echo $value  ?>">
+                                             <input type="hidden"  name="price" id="" value="<?php  echo $value  ?>">
                                      
                                     @endforeach
                                     

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Catergory;
 use App\Models\Order;
+use App\Models\paypal_payment;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -246,19 +247,14 @@ class HomeController extends Controller
        /* dd($response); */
     if(isset($response['status']) && $response['status'] == 'COMPLETED')
     {
-        
-    if(Auth::id()){
-      $user = Auth::user();
-      $user_id = $user->id;
-    
-        $payment = new Order();
+     
+        $payment = new paypal_payment();
 
         $payment->payment_id = $response['id'];
-        $payment->user_id = $user_id;
         $payment->product_name = session()->get('product_name');
         $payment->quantity = session()->get('quantity');
         $payment->amount = $response['purchase_units'][0]['payments']['captures'][0]['amount']['value'];
-        $payment->currency = $response['purchase_units'][0]['payments']['captures'][0]['amount']['value'];
+        $payment->currency = $response['purchase_units'][0]['payments']['captures'][0]['amount']['currency_code'];
         $payment->payer_name = $response['payer']['name']['given_name'];
         $payment->payer_email = $response['payer']['email_address'];
         $payment->payment_status = $response['status'];
@@ -272,7 +268,6 @@ class HomeController extends Controller
         unset($_SESSION['product_name']);
         unset($_SESSION['quantity']);
 
-    }
 
     } else {
 
